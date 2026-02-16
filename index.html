@@ -1271,6 +1271,32 @@ h2 {
     min-width: 320px;
 }
 
+  #book {
+    display: none; /* syns bara när en bok slumpas fram */
+    max-width: 500px; /* lagom bredd */
+    margin: 20px auto; /* centrerad */
+    padding: 20px;
+    background-color: #f9f9f9; /* ljus bakgrund */
+    border-radius: 12px; /* rundade hörn */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* mjuk skugga */
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+  }
+
+  #book h3 {
+    margin-top: 0;
+    color: #2c3e50;
+  }
+
+  #book p {
+    margin: 5px 0;
+  }
+
+  #book strong {
+    color: #34495e;
+  }
+	  
   </style>
 </head>
 <body>
@@ -2388,7 +2414,7 @@ async function getRandomBook() {
   <h3>${randomBook.title}</h3>
   <p><strong>Författare:</strong> ${randomBook.authors.join(", ")}</p>
   <p><strong>Övriga:</strong> ${randomBook.contributors.length > 0 ? randomBook.contributors.join(", ") : "Ingen"}</p>
-  <p><strong>År:</strong> ${randomBook.year}</p>
+  <p><strong>Utgivningsår:</strong> ${randomBook.year}</p>
   <p><strong>Upplaga:</strong> ${randomBook.edition}</p>
   <p><strong>Sidor:</strong> ${randomBook.pages}</p>
   <p><strong>ISBN:</strong> ${randomBook.isbn}</p>
