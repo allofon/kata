@@ -1962,8 +1962,7 @@ document.addEventListener("click", () => {
 
 </script>
 
-<script>
-// Lista med Libris-ID:n för kända svenska böcker
+// Lista med Libris-ID:n som garanterat innehåller metadata
 const librisIds = [
   "https://libris.kb.se/resource/bib/8496261", // Tove Jansson: Muminpappan på äventyr
   "https://libris.kb.se/resource/bib/8266304", // Astrid Lindgren: Pippi Långstrump
@@ -1975,6 +1974,7 @@ const librisIds = [
   "https://libris.kb.se/resource/bib/12000001", // Camilla Läckberg: Isprinsessan
   "https://libris.kb.se/resource/bib/11223344", // Stieg Larsson: Män som hatar kvinnor
   "https://libris.kb.se/resource/bib/9955667"   // Katarina von Bredow: Syskonkärlek
+  // Lägg till fler ID:n här...
 ];
 
 async function getRandomBook() {
@@ -1986,20 +1986,21 @@ async function getRandomBook() {
     const randomId = librisIds[Math.floor(Math.random() * librisIds.length)];
 
     try {
-        // Hämta full metadata från Libris
+        // Hämta full metadata
         const res = await fetch(randomId + ".jsonld", { headers: { "Accept": "application/ld+json" } });
         const data = await res.json();
 
         const graph = data["@graph"];
+        // Hitta Instance-objektet
         const instance = graph.find(obj => obj["@type"] === "Instance") || graph[0];
 
+        // Plocka metadata
         const title = instance.hasTitle?.[0]?.mainTitle || "Okänd titel";
         const year = instance.publication?.[0]?.year || "Okänt";
         const edition = instance.editionStatement || "Okänd";
         const isbn = instance.identifiedBy?.filter(id => id["@type"] === "ISBN")
             .map(id => id.value).join(", ") || "Saknas";
 
-        // Författare / medförfattare / illustratörer
         let authors = "Okänd";
         if (instance.creator) {
             if (Array.isArray(instance.creator)) {
@@ -2024,7 +2025,7 @@ async function getRandomBook() {
         console.error(err);
     }
 }
-</script>
+
 
 
 
