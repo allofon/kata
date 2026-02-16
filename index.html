@@ -2096,18 +2096,17 @@ async function getRandomBook(retry = 0) {
             <p><strong>Författare:</strong> ${author}</p>
             <p><strong>Utgivningsår:</strong> ${year}</p>
             <p><strong>Upplaga:</strong> ${edition}</p>
-            <p><strong>ISBN:</
+            <p><strong>ISBN:</strong> ${isbn}</p>
+            <p><strong>ISSN:</strong> ${issn}</p>
+        `;
 
+    } catch (error) {
+        console.error(error);
+        alert("Fel vid hämtning från Libris.");
+    }
+}
 
-
-
-
-
-
-
-
-
-
+</script>
 
 
 
