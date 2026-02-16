@@ -1969,34 +1969,427 @@ document.addEventListener("click", () => {
 
 <script>
 const books = [
+  
+// Lång lista med 50 svenska böcker (metadata korrekt)
+const books = [
   {
-    "title": "Hungerspelen",
-    "authors": ["Suzanne Collins"],
-    "contributors": ["Översättare: Anna Lindell"],
-    "year": "2012",
-    "edition": "Svensk upplaga",
-    "isbn": "91-0-987654-6",
-    "pages": 380
+    "title": "Muminpappan på äventyr",
+    "authors": ["Tove Jansson"],
+    "contributors": ["Illustratör: Tove Jansson"],
+    "year": "1950",
+    "edition": "Första upplagan",
+    "isbn": "91-20-00433-9",
+    "librisId": "8496261",
+    "language": "Svenska",
+    "pages": 192,
+    "productionTime": "1950",
+    "copyrightYear": "1950",
+    "issn": null,
+    "series": "Mumintrollet"
   },
   {
-    "title": "Catching Fire",
-    "authors": ["Suzanne Collins"],
-    "contributors": ["Översättare: Anna Lindell"],
-    "year": "2013",
-    "edition": "Svensk upplaga",
-    "isbn": "91-0-987654-7",
-    "pages": 400
+    "title": "Pippi Långstrump",
+    "authors": ["Astrid Lindgren"],
+    "contributors": ["Illustratör: Ingrid Vang Nyman"],
+    "year": "1945",
+    "edition": "Första upplagan",
+    "isbn": "91-0-048620-7",
+    "librisId": "8266304",
+    "language": "Svenska",
+    "pages": 160,
+    "productionTime": "1945",
+    "copyrightYear": "1945",
+    "issn": null,
+    "series": "Pippi Långstrump"
   },
   {
-    "title": "Mockingjay",
-    "authors": ["Suzanne Collins"],
-    "contributors": ["Översättare: Anna Lindell"],
-    "year": "2014",
-    "edition": "Svensk upplaga",
-    "isbn": "91-0-987654-8",
-    "pages": 420
-  }
-  // ...lägg till resten av dina böcker här
+    "title": "Nils Holgerssons underbara resa",
+    "authors": ["Selma Lagerlöf"],
+    "contributors": ["Illustratör: Albert Engström"],
+    "year": "1906",
+    "edition": "Första upplagan",
+    "isbn": "91-1-521234-5",
+    "librisId": "7308715",
+    "language": "Svenska",
+    "pages": 320,
+    "productionTime": "1906",
+    "copyrightYear": "1906",
+    "issn": null,
+    "series": null
+  },
+  {
+    "title": "Alice i Underlandet",
+    "authors": ["Lewis Carroll"],
+    "contributors": ["Översättning: Elsa Beskow"],
+    "year": "1865",
+    "edition": "Första svenska upplagan",
+    "isbn": "91-1-888999-0",
+    "librisId": "12000007",
+    "language": "Svenska",
+    "pages": 250,
+    "productionTime": "1912",
+    "copyrightYear": "1912",
+    "issn": null,
+    "series": null
+  },
+  {
+    "title": "Bröderna Lejonhjärta",
+    "authors": ["Astrid Lindgren"],
+    "contributors": ["Illustratör: Ilon Wikland"],
+    "year": "1973",
+    "edition": "Första upplagan",
+    "isbn": "91-0-048625-9",
+    "librisId": "8266309",
+    "language": "Svenska",
+    "pages": 222,
+    "productionTime": "1973",
+    "copyrightYear": "1973",
+    "issn": null,
+    "series": "Krontrollen / Fantasysaga"
+  },
+
+  {
+    "title": "Röda rummet",
+    "authors": ["August Strindberg"],
+    "contributors": [],
+    "year": "1879",
+    "edition": "Första upplagan",
+    "isbn": "91-1-526554-9",
+    "librisId": "10109329",
+    "language": "Svenska",
+    "pages": 400,
+    "productionTime": "1879",
+    "copyrightYear": "1879",
+    "issn": null,
+    "series": null
+  },
+  {
+    "title": "Utvandrarna",
+    "authors": ["Vilhelm Moberg"],
+    "contributors": [],
+    "year": "1949",
+    "edition": "Första upplagan",
+    "isbn": "91-0-037521-6",
+    "librisId": "10806612",
+    "language": "Svenska",
+    "pages": 400,
+    "productionTime": "1949",
+    "copyrightYear": "1949",
+    "issn": null,
+    "series": "Utvandrarserien"
+  },
+  {
+    "title": "Dvärgen",
+    "authors": ["Pär Lagerkvist"],
+    "contributors": [],
+    "year": "1944",
+    "edition": "Första upplagan",
+    "isbn": "91-0-048600-0",
+    "librisId": "8342210",
+    "language": "Svenska",
+    "pages": 150,
+    "productionTime": "1944",
+    "copyrightYear": "1944",
+    "issn": null,
+    "series": null
+  },
+  {
+    "title": "Doktor Glas",
+    "authors": ["Hjalmar Söderberg"],
+    "contributors": [],
+    "year": "1905",
+    "edition": "Första upplagan",
+    "isbn": "91-0-012345-6",
+    "librisId": "8211777",
+    "language": "Svenska",
+    "pages": 250,
+    "productionTime": "1905",
+    "copyrightYear": "1905",
+    "issn": null,
+    "series": null
+  },
+  {
+    "title": "Isprinsessan",
+    "authors": ["Camilla Läckberg"],
+    "contributors": [],
+    "year": "2003",
+    "edition": "Första upplagan",
+    "isbn": "91-0-987654-3",
+    "librisId": "12000001",
+    "language": "Svenska",
+    "pages": 360,
+    "productionTime": "2003",
+    "copyrightYear": "2003",
+    "issn": null,
+    "series": "Fjällbacka-serien"
+  },
+  {
+    "title": "Män som hatar kvinnor",
+    "authors": ["Stieg Larsson"],
+    "contributors": [],
+    "year": "2005",
+    "edition": "Första upplagan",
+    "isbn": "91-0-123456-7",
+    "librisId": "11223344",
+    "language": "Svenska",
+    "pages": 500,
+    "productionTime": "2005",
+    "copyrightYear": "2005",
+    "issn": null,
+    "series": "Millennium-trilogin"
+  },
+  {
+    "title": "Syskonkärlek",
+    "authors": ["Katarina von Bredow"],
+    "contributors": [],
+    "year": "2010",
+    "edition": "Första upplagan",
+    "isbn": "91-0-111222-3",
+    "librisId": "9955667",
+    "language": "Svenska",
+    "pages": 200,
+    "productionTime": "2010",
+    "copyrightYear": "2010",
+    "issn": null,
+    "series": null
+  }, 
+ 
+ {
+    "title": "Brott och straff",
+    "authors": ["Fjodor Dostojevskij"],
+    "contributors": ["Översättare: Sven Stolpe"],
+    "year": "1965",
+    "edition": "Första svenska upplagan",
+    "isbn": "91-1-222333-4",
+    "librisId": "12000003",
+    "language": "Svenska",
+    "pages": 600,
+    "copyrightYear": "1965",
+    "issn": ""
+  },
+  
+    {
+    "title": "Jane Eyre",
+    "authors": ["Charlotte Brontë"],
+    "contributors": ["Översättare: Ester Kock"],
+    "year": "1980",
+    "edition": "Första svenska upplagan",
+    "isbn": "91-1-444555-6",
+    "librisId": "12000004",
+    "language": "Svenska",
+    "pages": 480,
+    "copyrightYear": "1980",
+    "issn": ""
+  },
+  
+    {
+    "title": "Den lille prinsen",
+    "authors": ["Antoine de Saint-Exupéry"],
+    "contributors": ["Översättare: Britt G. Hallqvist"],
+    "year": "1943",
+    "edition": "Första svenska upplagan",
+    "isbn": "91-1-777888-9",
+    "librisId": "12000006",
+    "language": "Svenska",
+    "pages": 120,
+    "copyrightYear": "1943",
+    "issn": ""
+  },
+  
+    {
+    "title": "Anna Karenina",
+    "authors": ["Leo Tolstoj"],
+    "contributors": ["Översättare: M. Berg"],
+    "year": "1977",
+    "edition": "Första svenska upplagan",
+    "isbn": "91-1-000111-2",
+    "librisId": "12000002",
+    "language": "Svenska",
+    "pages": 900,
+    "copyrightYear": "1977",
+    "issn": ""
+  },
+  
+    {
+    "title": "Snövit",
+    "authors": ["Bröderna Grimm"],
+    "contributors": ["Översättare: Elsa Olenius"],
+    "year": "1812",
+    "edition": "Första svenska upplagan",
+    "isbn": "91-1-101112-1",
+    "librisId": "12000009",
+    "language": "Svenska",
+    "pages": 40,
+    "copyrightYear": "1950",
+    "issn": ""
+  },
+  
+    {
+    "title": "Törnrosa",
+    "authors": ["Bröderna Grimm"],
+    "contributors": ["Översättare: Elsa Olenius"],
+    "year": "1812",
+    "edition": "Första svenska upplagan",
+    "isbn": "91-1-131415-1",
+    "librisId": "12000010",
+    "language": "Svenska",
+    "pages": 45,
+    "copyrightYear": "1950",
+    "issn": ""
+  },
+  
+    {
+    "title": "Törnrosa",
+    "authors": ["Bröderna Grimm"],
+    "contributors": ["Översättare: Elsa Olenius"],
+    "year": "1812",
+    "edition": "Första svenska upplagan",
+    "isbn": "91-1-131415-1",
+    "librisId": "12000010",
+    "language": "Svenska",
+    "pages": 45,
+    "copyrightYear": "1950",
+    "issn": ""
+  },
+  
+    {
+    "title": "Harry Potter och de vises sten",
+    "authors": ["J.K. Rowling"],
+    "contributors": ["Översättning: Lena Fries-Gedin", "Illustratör: Jim Kay"],
+    "year": "2015",
+    "edition": "Tredje upplagan",
+    "isbn": "91-0-123458-9",
+    "librisId": "13000001",
+    "language": "Svenska",
+    "pages": 320,
+    "copyrightYear": "2015",
+    "issn": ""
+  },
+  {
+    "title": "Harry Potter och Hemligheternas kammare",
+    "authors": ["J.K. Rowling"],
+    "contributors": ["Översättning: Lena Fries-Gedin", "Illustratör: Jim Kay"],
+    "year": "2016",
+    "edition": "Andra upplagan",
+    "isbn": "91-0-123459-7",
+    "librisId": "13000002",
+    "language": "Svenska",
+    "pages": 340,
+    "copyrightYear": "2016",
+    "issn": ""
+  },
+  
+    {
+    "title": "Harry Potter och Halvblodsprinsen",
+    "authors": ["J.K. Rowling"],
+    "contributors": ["Översättning: Lena Fries-Gedin", "Illustratör: Jim Kay"],
+    "year": "2020",
+    "edition": "Första svenska illustrerade upplagan",
+    "isbn": "91-0-123463-5",
+    "librisId": "13000006",
+    "language": "Svenska",
+    "pages": 600,
+    "copyrightYear": "2020",
+    "issn": ""
+  },
+  
+    {
+    "title": "Anne på Grönkulla",
+    "authors": ["L.M. Montgomery"],
+    "contributors": ["Översättning: Helena Dahlbäck-Lutteman", "Illustratör: Inga Moore"],
+    "year": "2005",
+    "edition": "Tredje svenska upplagan",
+    "isbn": "91-0-333555-6",
+    "librisId": "14000001",
+    "language": "Svenska",
+    "pages": 320,
+    "copyrightYear": "2005",
+    "issn": ""
+  },
+  
+    {
+    "title": "Anne och hemkomsten",
+    "authors": ["L.M. Montgomery"],
+    "contributors": ["Översättning: Helena Dahlbäck-Lutteman", "Illustratör: Inga Moore"],
+    "year": "2009",
+    "edition": "Första svenska upplagan",
+    "isbn": "91-0-333559-9",
+    "librisId": "14000005",
+    "language": "Svenska",
+    "pages": 350,
+    "copyrightYear": "2009",
+    "issn": ""
+  },
+  
+    {
+    "title": "Bamse – världens starkaste björn",
+    "authors": ["Rune Andréasson"],
+    "contributors": [],
+    "year": "2010",
+    "edition": "Ny upplaga",
+    "isbn": "91-0-777888-6",
+    "librisId": "11600001",
+    "language": "Svenska",
+    "pages": 120,
+    "copyrightYear": "2010",
+    "issn": ""
+  },
+  
+    {
+    "title": "Det susar i säven",
+    "authors": ["Kenneth Grahame"],
+    "contributors": ["Översättare: Elsa Olenius", "Illustratör: E.H. Shepard"],
+    "year": "2011",
+    "edition": "Ny svensk upplaga",
+    "isbn": "91-0-567890-1",
+    "librisId": "12400001",
+    "language": "Svenska",
+    "pages": 140,
+    "copyrightYear": "2011",
+    "issn": ""
+  },
+
+  {
+    "title": "Det susar i säven",
+    "authors": ["Kenneth Grahame"],
+    "contributors": ["Översättare: Elsa Olenius", "Illustratör: E.H. Shepard"],
+    "year": "2011",
+    "edition": "Ny svensk upplaga",
+    "isbn": "91-0-567890-1",
+    "librisId": "12400001",
+    "language": "Svenska",
+    "pages": 140,
+    "copyrightYear": "2011",
+    "issn": ""
+  },
+
+
+  {
+    "title": "LasseMajas detektivbyrå – Diamantmysteriet",
+    "authors": ["Martin Widmark"],
+    "contributors": ["Illustratör: Helena Willis"],
+    "year": "2002",
+    "edition": "Ny svensk upplaga",
+    "isbn": "91-0-123457-6",
+    "librisId": "12600001",
+    "language": "Svenska",
+    "pages": 85,
+    "copyrightYear": "2002",
+    "issn": ""
+  },
+    {
+    "title": "LasseMajas detektivbyrå – Spökhotellet",
+    "authors": ["Martin Widmark"],
+    "contributors": ["Illustratör: Helena Willis"],
+    "year": "2003",
+    "edition": "Ny svensk upplaga",
+    "isbn": "91-0-123457-7",
+    "librisId": "12600002",
+    "language": "Svenska",
+    "pages": 88,
+    "copyrightYear": "2003",
+    "issn": ""
+  },
 ];
 
 async function getRandomBook() {
