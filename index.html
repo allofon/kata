@@ -1231,6 +1231,7 @@ h2 {
     cursor: pointer;
     font-size: 1rem;
     
+    
   }
 
   #generateBtn:hover {
@@ -1254,35 +1255,39 @@ h2 {
   background: #0066cc;
   color: white;
   cursor: pointer;
+  
+ 
 }
 
 #generator button:hover {
   background: #004999;
 }
 
-.book {
-    margin-top: 30px;
-    display: inline-block;
-    text-align: left;
-    background: white;
+#book {
+    display: block;           /* alltid synlig */
+    margin-top: 0px;         /* avstånd mellan knapp och rutan */
     padding: 20px;
+    background-color: #f9f9f9;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    min-width: 320px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    min-height: 100px;        /* ger plats innan innehåll fylls */
 }
 
-  #book {
-    display: none; /* syns bara när en bok slumpas fram */
-    max-width: 500px; /* lagom bredd */
-    margin: 20px auto; /* centrerad */
+#book {
+    max-width: 500px;
+    margin: 5px auto 0 auto; /* 20px mellan knapp och rutan */
     padding: 20px;
-    background-color: #f9f9f9; /* ljus bakgrund */
-    border-radius: 12px; /* rundade hörn */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* mjuk skugga */
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     font-family: Arial, sans-serif;
     line-height: 1.5;
+    min-height: 100px; /* ger lite plats innan innehåll */
     transition: all 0.3s ease;
-  }
+    margin-bottom: 30px;
+    color: #000000; /* mörkblå text */
+}
+
 
   #book h3 {
     margin-top: 0;
@@ -1296,6 +1301,36 @@ h2 {
   #book strong {
     color: #34495e;
   }
+
+/* Marginal mellan knapp och manifestation-ruta */
+button[onclick="getRandomBook()"] {
+    margin-bottom: 20px; /* utrymme under knappen */
+}
+
+/* Stil för Slumpa bok-knappen */
+button[onclick="getRandomBook()"] {
+    margin-bottom: 20px;      /* behåll utrymmet */
+    background-color: #38bdf8; /* ljusblå bakgrund */
+    color: white;             /* vit text */
+    font-size: 1.1rem;        /* lite större text */
+    font-weight: 600;         /* fet text */
+    padding: 0.6rem 1.2rem;   /* mer “luft” inuti knappen */
+    border: none;
+    border-radius: 12px;      /* rundade hörn */
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+}
+
+button[onclick="getRandomBook()"]:hover {
+    background-color: #2563eb; /* mörkare blå vid hover */
+    transform: translateY(-1px); /* liten lyfteffekt */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+button[onclick="getRandomBook()"]:active {
+    transform: translateY(1px); /* tryck-effekt */
+}
 	  
   </style>
 </head>
@@ -1365,8 +1400,6 @@ h2 {
     </li>
 </nav>
 
-
-<h1>Slumpad bok från Libris</h1>
 <button onclick="getRandomBook()">Slumpa bok</button>
 
 <div id="book" class="book" style="display:none;"></div>
@@ -1997,440 +2030,448 @@ document.addEventListener("click", () => {
 // Lång lista med 50 svenska böcker (metadata korrekt)
 const books = [
   {
-    "title": "Muminpappan på äventyr",
-    "authors": ["Tove Jansson"],
-    "contributors": ["Illustratör: Tove Jansson"],
-    "year": "1950",
-    "edition": "Första upplagan",
-    "isbn": "91-20-00433-9",
-    "librisId": "8496261",
-    "language": "Svenska",
-    "pages": 192,
-    "productionTime": "1950",
-    "copyrightYear": "1950",
-    "issn": null,
-    "series": "Mumintrollet"
+    title: "Good Omens",
+    subtitle: "The Nice and Accurate Prophecies of Agnes Nutter, Witch",
+    authors: ["Neil Gaiman", "Terry Pratchett"],
+    illustrator: null,
+    translator: null,
+    edition: "First Edition",
+    isbn: "978-0-575-04800-1",
+    publisher: "Workman Publishing",
+    language: "English",
+    pages: 432,
+    year: null,
+    productionTime: "1990",
+    copyrightYear: "1990",
+    series: null,
+    printingInfo: null,
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
   {
-    "title": "Pippi Långstrump",
-    "authors": ["Astrid Lindgren"],
-    "contributors": ["Illustratör: Ingrid Vang Nyman"],
-    "year": "1945",
-    "edition": "Första upplagan",
-    "isbn": "91-0-048620-7",
-    "librisId": "8266304",
-    "language": "Svenska",
-    "pages": 160,
-    "productionTime": "1945",
-    "copyrightYear": "1945",
-    "issn": null,
-    "series": "Pippi Långstrump"
+    title: "To Kill a Mockingbird",
+    subtitle: null,
+    authors: ["Harper Lee"],
+    illustrator: null,
+    translator: null,
+    edition: "First Edition (original 1960 release)",
+    isbn: "9780446310789",
+    publisher: "J.B. Lippincott & Co.",
+    language: "English",
+    pages: 281,
+    year: "1960",
+    productionTime: "1960",
+    copyrightYear: "1960",
+    series: null,
+    printingInfo: "First edition, first printing (original 1960)",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
   {
-    "title": "Nils Holgerssons underbara resa",
-    "authors": ["Selma Lagerlöf"],
-    "contributors": ["Illustratör: Albert Engström"],
-    "year": "1906",
-    "edition": "Första upplagan",
-    "isbn": "91-1-521234-5",
-    "librisId": "7308715",
-    "language": "Svenska",
-    "pages": 320,
-    "productionTime": "1906",
-    "copyrightYear": "1906",
-    "issn": null,
-    "series": null
+    title: "Hobbiten",
+    subtitle: "eller Bort och hem igen",
+    authors: ["J.R.R. Tolkien"],
+    illustrator: null,
+    translator: ["Erik Andersson", "John Swedenmark"],
+    edition: null,
+    isbn: "9789113044903",
+    publisher: "Norstedts",
+    language: "Svenska",
+    pages: 283,
+    year: "2012",
+    productionTime: "2012",
+    copyrightYear: "1937",
+    series: null,
+    printingInfo: null,
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
   {
-    "title": "Alice i Underlandet",
-    "authors": ["Lewis Carroll"],
-    "contributors": ["Översättning: Elsa Beskow"],
-    "year": "1865",
-    "edition": "Första svenska upplagan",
-    "isbn": "91-1-888999-0",
-    "librisId": "12000007",
-    "language": "Svenska",
-    "pages": 250,
-    "productionTime": "1912",
-    "copyrightYear": "1912",
-    "issn": null,
-    "series": null
+    title: "Män som hatar kvinnor",
+    subtitle: null,
+    authors: ["Stieg Larsson"],
+    illustrator: null,
+    translator: null,
+    edition: "Första utgåvan",
+    isbn: "9789113014081",
+    publisher: "Norstedts Förlag",
+    language: "Svenska",
+    pages: 544,
+    year: null,
+    productionTime: "2005",
+    copyrightYear: "2005",
+    series: "Millennium",
+    printingInfo: null,
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
   {
-    "title": "Bröderna Lejonhjärta",
-    "authors": ["Astrid Lindgren"],
-    "contributors": ["Illustratör: Ilon Wikland"],
-    "year": "1973",
-    "edition": "Första upplagan",
-    "isbn": "91-0-048625-9",
-    "librisId": "8266309",
-    "language": "Svenska",
-    "pages": 222,
-    "productionTime": "1973",
-    "copyrightYear": "1973",
-    "issn": null,
-    "series": "Krontrollen / Fantasysaga"
+    title: "Bröderna Lejonhjärta",
+    subtitle: null,
+    authors: ["Astrid Lindgren"],
+    illustrator: null,
+    translator: null,
+    edition: "Första upplagan",
+    isbn: "9129408652",
+    publisher: "Rabén & Sjögren",
+    language: "Svenska",
+    pages: 227,
+    year: null,
+    productionTime: null,
+    copyrightYear: "1973",
+    series: null,
+    printingInfo: null,
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
+  },
+  {
+    title: "Mamma Mu och Kråkan",
+    subtitle: null,
+    authors: ["Jujja Wieslander", "Tomas Wieslander"],
+    illustrator: ["Sven Nordqvist"],
+    translator: null,
+    edition: null,
+    isbn: "9789129727326",
+    publisher: "Rabén & Sjögren",
+    language: "Svenska",
+    pages: 32,
+    year: null,
+    productionTime: "2020",
+    copyrightYear: "2020",
+    series: null,
+    printingInfo: null,
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
 
   {
-    "title": "Röda rummet",
-    "authors": ["August Strindberg"],
-    "contributors": [],
-    "year": "1879",
-    "edition": "Första upplagan",
-    "isbn": "91-1-526554-9",
-    "librisId": "10109329",
-    "language": "Svenska",
-    "pages": 400,
-    "productionTime": "1879",
-    "copyrightYear": "1879",
-    "issn": null,
-    "series": null
+    title: "Mamma Mu städar",
+    subtitle: null,
+    authors: ["Jujja Wieslander", "Tomas Wieslander"],
+    illustrator: ["Sven Nordqvist"],
+    translator: null,
+    edition: null,
+    isbn: "9789129715507",
+    publisher: "Rabén & Sjögren",
+    language: "Svenska",
+    pages: 32,
+    year: "2019",
+    productionTime: "2019",
+    copyrightYear: "2019",
+    series: null,
+    printingInfo: null,
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
   {
-    "title": "Utvandrarna",
-    "authors": ["Vilhelm Moberg"],
-    "contributors": [],
-    "year": "1949",
-    "edition": "Första upplagan",
-    "isbn": "91-0-037521-6",
-    "librisId": "10806612",
-    "language": "Svenska",
-    "pages": 400,
-    "productionTime": "1949",
-    "copyrightYear": "1949",
-    "issn": null,
-    "series": "Utvandrarserien"
+    title: "Will Grayson, Will Grayson",
+    subtitle: null,
+    authors: ["John Green", "David Levithan"],
+    illustrator: null,
+    translator: null,
+    edition: "First Edition",
+    isbn: "9780142418475",
+    publisher: "Dutton Juvenile",
+    language: "English",
+    pages: 310,
+    year: null,
+    productionTime: "2010-04-06",
+    copyrightYear: "2010",
+    series: null,
+    printingInfo: "1st printing",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
   {
-    "title": "Dvärgen",
-    "authors": ["Pär Lagerkvist"],
-    "contributors": [],
-    "year": "1944",
-    "edition": "Första upplagan",
-    "isbn": "91-0-048600-0",
-    "librisId": "8342210",
-    "language": "Svenska",
-    "pages": 150,
-    "productionTime": "1944",
-    "copyrightYear": "1944",
-    "issn": null,
-    "series": null
+    title: "Drömfakulteten",
+    subtitle: null,
+    authors: ["Sara Stridsberg"],
+    illustrator: null,
+    translator: null,
+    edition: "Första upplagan",
+    isbn: "91-0-010726-3",
+    publisher: "Albert Bonniers Förlag",
+    language: "Svenska",
+    pages: 363,
+    year: "2006",
+    productionTime: "2006",
+    copyrightYear: "2006",
+    series: null,
+    printingInfo: "1st printing",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
   {
-    "title": "Doktor Glas",
-    "authors": ["Hjalmar Söderberg"],
-    "contributors": [],
-    "year": "1905",
-    "edition": "Första upplagan",
-    "isbn": "91-0-012345-6",
-    "librisId": "8211777",
-    "language": "Svenska",
-    "pages": 250,
-    "productionTime": "1905",
-    "copyrightYear": "1905",
-    "issn": null,
-    "series": null
+    title: "Simon och ekarna",
+    subtitle: null,
+    authors: ["Marianne Fredriksson"],
+    illustrator: null,
+    translator: null,
+    edition: "Första upplagan",
+    isbn: "0753810751",
+    publisher: "Unknown (original svensk utgåva)",
+    language: "Svenska",
+    pages: 357,
+    year: "1985",
+    productionTime: "1985",
+    copyrightYear: "1985",
+    series: null,
+    printingInfo: "1st printing",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
   {
-    "title": "Isprinsessan",
-    "authors": ["Camilla Läckberg"],
-    "contributors": [],
-    "year": "2003",
-    "edition": "Första upplagan",
-    "isbn": "91-0-987654-3",
-    "librisId": "12000001",
-    "language": "Svenska",
-    "pages": 360,
-    "productionTime": "2003",
-    "copyrightYear": "2003",
-    "issn": null,
-    "series": "Fjällbacka-serien"
-  },
-  {
-    "title": "Män som hatar kvinnor",
-    "authors": ["Stieg Larsson"],
-    "contributors": [],
-    "year": "2005",
-    "edition": "Första upplagan",
-    "isbn": "91-0-123456-7",
-    "librisId": "11223344",
-    "language": "Svenska",
-    "pages": 500,
-    "productionTime": "2005",
-    "copyrightYear": "2005",
-    "issn": null,
-    "series": "Millennium-trilogin"
-  },
-  {
-    "title": "Syskonkärlek",
-    "authors": ["Katarina von Bredow"],
-    "contributors": [],
-    "year": "2010",
-    "edition": "Första upplagan",
-    "isbn": "91-0-111222-3",
-    "librisId": "9955667",
-    "language": "Svenska",
-    "pages": 200,
-    "productionTime": "2010",
-    "copyrightYear": "2010",
-    "issn": null,
-    "series": null
-  }, 
- 
- {
-    "title": "Brott och straff",
-    "authors": ["Fjodor Dostojevskij"],
-    "contributors": ["Översättare: Sven Stolpe"],
-    "year": "1965",
-    "edition": "Första svenska upplagan",
-    "isbn": "91-1-222333-4",
-    "librisId": "12000003",
-    "language": "Svenska",
-    "pages": 600,
-    "copyrightYear": "1965",
-    "issn": ""
-  },
-  
-    {
-    "title": "Jane Eyre",
-    "authors": ["Charlotte Brontë"],
-    "contributors": ["Översättare: Ester Kock"],
-    "year": "1980",
-    "edition": "Första svenska upplagan",
-    "isbn": "91-1-444555-6",
-    "librisId": "12000004",
-    "language": "Svenska",
-    "pages": 480,
-    "copyrightYear": "1980",
-    "issn": ""
-  },
-  
-    {
-    "title": "Den lille prinsen",
-    "authors": ["Antoine de Saint-Exupéry"],
-    "contributors": ["Översättare: Britt G. Hallqvist"],
-    "year": "1943",
-    "edition": "Första svenska upplagan",
-    "isbn": "91-1-777888-9",
-    "librisId": "12000006",
-    "language": "Svenska",
-    "pages": 120,
-    "copyrightYear": "1943",
-    "issn": ""
-  },
-  
-    {
-    "title": "Anna Karenina",
-    "authors": ["Leo Tolstoj"],
-    "contributors": ["Översättare: M. Berg"],
-    "year": "1977",
-    "edition": "Första svenska upplagan",
-    "isbn": "91-1-000111-2",
-    "librisId": "12000002",
-    "language": "Svenska",
-    "pages": 900,
-    "copyrightYear": "1977",
-    "issn": ""
-  },
-  
-    {
-    "title": "Snövit",
-    "authors": ["Bröderna Grimm"],
-    "contributors": ["Översättare: Elsa Olenius"],
-    "year": "1812",
-    "edition": "Första svenska upplagan",
-    "isbn": "91-1-101112-1",
-    "librisId": "12000009",
-    "language": "Svenska",
-    "pages": 40,
-    "copyrightYear": "1950",
-    "issn": ""
-  },
-    {
-    "title": "Törnrosa",
-    "authors": ["Bröderna Grimm"],
-    "contributors": ["Översättare: Elsa Olenius"],
-    "year": "1812",
-    "edition": "Första svenska upplagan",
-    "isbn": "91-1-131415-1",
-    "librisId": "12000010",
-    "language": "Svenska",
-    "pages": 45,
-    "copyrightYear": "1950",
-    "issn": ""
-  },
-  
-    {
-    "title": "Harry Potter och de vises sten",
-    "authors": ["J.K. Rowling"],
-    "contributors": ["Översättning: Lena Fries-Gedin", "Illustratör: Jim Kay"],
-    "year": "2015",
-    "edition": "Tredje upplagan",
-    "isbn": "91-0-123458-9",
-    "librisId": "13000001",
-    "language": "Svenska",
-    "pages": 320,
-    "copyrightYear": "2015",
-    "issn": ""
-  },
-  {
-    "title": "Harry Potter och Hemligheternas kammare",
-    "authors": ["J.K. Rowling"],
-    "contributors": ["Översättning: Lena Fries-Gedin", "Illustratör: Jim Kay"],
-    "year": "2016",
-    "edition": "Andra upplagan",
-    "isbn": "91-0-123459-7",
-    "librisId": "13000002",
-    "language": "Svenska",
-    "pages": 340,
-    "copyrightYear": "2016",
-    "issn": ""
-  },
-  
-    {
-    "title": "Harry Potter och Halvblodsprinsen",
-    "authors": ["J.K. Rowling"],
-    "contributors": ["Översättning: Lena Fries-Gedin", "Illustratör: Jim Kay"],
-    "year": "2020",
-    "edition": "Första svenska illustrerade upplagan",
-    "isbn": "91-0-123463-5",
-    "librisId": "13000006",
-    "language": "Svenska",
-    "pages": 600,
-    "copyrightYear": "2020",
-    "issn": ""
-  },
-  
-    {
-    "title": "Anne på Grönkulla",
-    "authors": ["L.M. Montgomery"],
-    "contributors": ["Översättning: Helena Dahlbäck-Lutteman", "Illustratör: Inga Moore"],
-    "year": "2005",
-    "edition": "Tredje svenska upplagan",
-    "isbn": "91-0-333555-6",
-    "librisId": "14000001",
-    "language": "Svenska",
-    "pages": 320,
-    "copyrightYear": "2005",
-    "issn": ""
-  },
-  
-    {
-    "title": "Anne och hemkomsten",
-    "authors": ["L.M. Montgomery"],
-    "contributors": ["Översättning: Helena Dahlbäck-Lutteman", "Illustratör: Inga Moore"],
-    "year": "2009",
-    "edition": "Första svenska upplagan",
-    "isbn": "91-0-333559-9",
-    "librisId": "14000005",
-    "language": "Svenska",
-    "pages": 350,
-    "copyrightYear": "2009",
-    "issn": ""
-  },
-  
-    {
-    "title": "Bamse – världens starkaste björn",
-    "authors": ["Rune Andréasson"],
-    "contributors": [],
-    "year": "2010",
-    "edition": "Ny upplaga",
-    "isbn": "91-0-777888-6",
-    "librisId": "11600001",
-    "language": "Svenska",
-    "pages": 120,
-    "copyrightYear": "2010",
-    "issn": ""
-  },
-  
-    {
-    "title": "Det susar i säven",
-    "authors": ["Kenneth Grahame"],
-    "contributors": ["Översättare: Elsa Olenius", "Illustratör: E.H. Shepard"],
-    "year": "2011",
-    "edition": "Ny svensk upplaga",
-    "isbn": "91-0-567890-1",
-    "librisId": "12400001",
-    "language": "Svenska",
-    "pages": 140,
-    "copyrightYear": "2011",
-    "issn": ""
+    title: "H. C. Andersens bästa sagor",
+    subtitle: null,
+    authors: ["H.C. Andersen"],
+    illustrator: ["Ruth Koser‑Michaëls"],
+    translator: ["Jakob Gunnarsson"],
+    edition: null,
+    isbn: "9789171023452",
+    publisher: "Norstedts",
+    language: "Svenska",
+    pages: 208,
+    year: "1995",
+    productionTime: "1995-01-01",
+    copyrightYear: "1995",
+    series: null,
+    printingInfo: "Svensk utgåva",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
 
   {
-    "title": "Det susar i säven",
-    "authors": ["Kenneth Grahame"],
-    "contributors": ["Översättare: Elsa Olenius", "Illustratör: E.H. Shepard"],
-    "year": "2011",
-    "edition": "Ny svensk upplaga",
-    "isbn": "91-0-567890-1",
-    "librisId": "12400001",
-    "language": "Svenska",
-    "pages": 140,
-    "copyrightYear": "2011",
-    "issn": ""
+    title: "Mulle Meck bygger en båt",
+    subtitle: null,
+    authors: ["George Johansson"],
+    illustrator: ["Jens Ahlbom"],
+    translator: null,
+    edition: "Första upplagan",
+    isbn: "9789129657491",
+    publisher: "B. Wahlströms",
+    language: "Svenska",
+    pages: 32,
+    year: "1992",
+    productionTime: "1992",
+    copyrightYear: "1992",
+    series: "Mulle Meck",
+    printingInfo: "1st printing",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
-
-
   {
-    "title": "LasseMajas detektivbyrå – Diamantmysteriet",
-    "authors": ["Martin Widmark"],
-    "contributors": ["Illustratör: Helena Willis"],
-    "year": "2002",
-    "edition": "Ny svensk upplaga",
-    "isbn": "91-0-123457-6",
-    "librisId": "12600001",
-    "language": "Svenska",
-    "pages": 85,
-    "copyrightYear": "2002",
-    "issn": ""
+    title: "Samuels bok",
+    subtitle: null,
+    authors: ["Sven Delblanc"],
+    illustrator: null,
+    translator: null,
+    edition: null,
+    isbn: "9789101001376",
+    publisher: "Albert Bonniers Förlag",
+    language: "Svenska",
+    pages: 380,
+    year: "2012",
+    productionTime: "2012-02-13",
+    copyrightYear: "1981",
+    series: "Samuelsviten",
+    printingInfo: "Reprint edition",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
-    {
-    "title": "LasseMajas detektivbyrå – Spökhotellet",
-    "authors": ["Martin Widmark"],
-    "contributors": ["Illustratör: Helena Willis"],
-    "year": "2003",
-    "edition": "Ny svensk upplaga",
-    "isbn": "91-0-123457-7",
-    "librisId": "12600002",
-    "language": "Svenska",
-    "pages": 88,
-    "copyrightYear": "2003",
-    "issn": ""
+  {
+    title: "Isprinsessan",
+    subtitle: null,
+    authors: ["Camilla Läckberg"],
+    illustrator: null,
+    translator: null,
+    edition: "Första upplagan",
+    isbn: "9789137125350",
+    publisher: "Bokförlaget Forum",
+    language: "Svenska",
+    pages: 320,
+    year: "",
+    productionTime: "",
+    copyrightYear: "2003",
+    series: "Fjällbacka‑serien",
+    printingInfo: "1st printing",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
   },
+  {
+    title: "Tänka, snabbt och långsamt",
+    subtitle: null,
+    authors: ["Daniel Kahneman"],
+    illustrator: null,
+    translator: ["Pär Svensson"],
+    edition: "Första svenska utgåvan",
+    isbn: "9789186815721",
+    publisher: "Volante",
+    language: "Svenska",
+    pages: 511,
+    year: "2012",
+    productionTime: "2012-01-01",
+    copyrightYear: "2011",
+    series: null,
+    printingInfo: "1:a upplagan",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
+  },
+  {
+    title: "The Gospel of the Eels",
+    subtitle: "A Father, a Son and the World's Most Enigmatic Fish",
+    authors: ["Patrik Svensson"],
+    illustrator: null,
+    translator: ["Agnes Broomé"],
+    edition: "First English translation",
+    isbn: "9780525541127",
+    publisher: "Penguin Books",
+    language: "English",
+    pages: 336,
+    year: "",
+    productionTime: "2020-01-14",
+    copyrightYear: "2019",
+    series: null,
+    printingInfo: "1st English translation",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
+  },
+  {
+    title: "Vad är filosofi?",
+    subtitle: null,
+    authors: ["Gilles Deleuze", "Félix Guattari"],
+    illustrator: null,
+    translator: ["Rikard Johansson", "Fredrika Spindler", "Sven‑Olov Wallenstein"],
+    edition: "Första utgåvan",
+    isbn: "9789198866582",
+    publisher: "Glänta produktion",
+    language: "Svenska",
+    pages: 272,
+    year: "2024",
+    productionTime: "2024‑05‑14",
+    copyrightYear: "1991",
+    series: null,
+    printingInfo: "1:a svenska utgåvan",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
+  },
+  {
+    title: "Homo sacer",
+    subtitle: "den suveräna makten och det nakna livet",
+    authors: ["Giorgio Agamben"],
+    illustrator: null,
+    translator: ["Sven‑Olov Wallenstein"],
+    edition: null,
+    isbn: "9789171733009",
+    publisher: "Bokförlaget Daidalos",
+    language: "Svenska",
+    pages: 223,
+    year: "",
+    productionTime: "2010",
+    copyrightYear: "2010",
+    series: null,
+    printingInfo: "1:a svenska utgåvan",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: null
+  },
+  {
+    title: "Reality+: Virtual Worlds and the Problems of Philosophy",
+    subtitle: null,
+    authors: ["David Chalmers"],
+    illustrator: null,
+    translator: null,
+    edition: "Original English edition",
+    isbn: "9780393881661",
+    publisher: "W. W. Norton & Company",
+    language: "English",
+    pages: 336,
+    year: "2022",
+    productionTime: "2022‑03‑15",
+    copyrightYear: "2022",
+    series: null,
+    printingInfo: "1st printing",
+    contributors: null,
+    librisId: null,
+    issn: null,
+    notes: "Utforskar filosofiska frågor kring verklighet, simulation och medvetande i den digitala eran."
+  }
 ];
-
+</script>
+<script>
 async function getRandomBook() {
   const container = document.getElementById("book");
   container.style.display = "block";
   container.innerHTML = "Laddar...";
 
   try {
-    // Slumpa en bok från listan
+    // Här skulle du slumpa från din lista
     const randomBook = books[Math.floor(Math.random() * books.length)];
 
+    // Se till att alla optional properties finns
+    const authors = randomBook.authors || [];
+    const contributors = randomBook.contributors || [];
+    const illustrator = randomBook.illustrator || [];
+    const translator = randomBook.translator || [];
+    
     container.innerHTML = `
-  <h3>${randomBook.title}</h3>
-  <p><strong>Författare:</strong> ${randomBook.authors.join(", ")}</p>
-  <p><strong>Övriga:</strong> ${randomBook.contributors.length > 0 ? randomBook.contributors.join(", ") : "Ingen"}</p>
-  <p><strong>Utgivningsår:</strong> ${randomBook.year}</p>
-  <p><strong>Upplaga:</strong> ${randomBook.edition}</p>
-  <p><strong>Sidor:</strong> ${randomBook.pages}</p>
-  <p><strong>ISBN:</strong> ${randomBook.isbn}</p>
-  <p><strong>Libris-ID:</strong> ${randomBook.librisId}</p>
-  <p><strong>Språk:</strong> ${randomBook.language}</p>
-  <p><strong>Produktionsår:</strong> ${randomBook.productionTime}</p>
-  <p><strong>Copyright:</strong> ${randomBook.copyrightYear}</p>
-  <p><strong>ISSN:</strong> ${randomBook.issn || "Ingen"}</p>
-  <p><strong>Serie:</strong> ${randomBook.series || "Ingen"}</p>
-`;
+      <h3>${randomBook.title || "Ingen titel"}</h3>
+      <p><strong>Författare:</strong> ${authors.length > 0 ? authors.join(", ") : "Ingen"}</p>
+      <p><strong>Övr. titelinfo.:</strong> ${contributors.length > 0 ? contributors.join(", ") : "Ingen"}</p>
+      <p><strong>Illustratör:</strong> ${illustrator.length > 0 ? illustrator.join(", ") : "Ingen"}</p>
+      <p><strong>Översättare:</strong> ${translator.length > 0 ? translator.join(", ") : "Ingen"}</p>
+      <p><strong>Utgivningsår:</strong> ${randomBook.year || "Okänt"}</p>
+      <p><strong>Upplaga:</strong> ${randomBook.edition || "Okänd"}</p>
+      <p><strong>Sidor:</strong> ${randomBook.pages || "Okänt"}</p>
+      <p><strong>ISBN:</strong> ${randomBook.isbn || "Okänt"}</p>
+      <p><strong>Språk:</strong> ${randomBook.language || "Okänt"}</p>
+      <p><strong>Tillverkningstid:</strong> ${randomBook.productionTime || "Okänt"}</p>
+      <p><strong>Copyright:</strong> ${randomBook.copyrightYear || "Okänt"}</p>
+      <p><strong>ISSN:</strong> ${randomBook.issn || "Ingen"}</p>
+      <p><strong>Serie:</strong> ${randomBook.series || "Ingen"}</p>
+      
+    `;
   } catch (err) {
     console.error(err);
     container.innerHTML = "Kunde inte visa bok.";
   }
 }
 </script>
+
 
 
 </main>
