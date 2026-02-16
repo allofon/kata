@@ -1244,20 +1244,20 @@ h2 {
 #generator {
   display: flex;
   flex-direction: column;
-  align-items: center; /* centrera innehållet */
-  
-  button {
-    padding: 12px 25px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    background: #0066cc;
-    color: white;
-    cursor: pointer;
 }
 
-button:hover {
-    background: #004999;
+#generator button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background: #0066cc;
+  color: white;
+  cursor: pointer;
+}
+
+#generator button:hover {
+  background: #004999;
 }
 
 .book {
@@ -2022,8 +2022,11 @@ const books = [
 
 async function getRandomBook() {
     const container = document.getElementById("book");
-    container.style.display = "none";
+    container.style.display = "block";
     container.innerHTML = "Laddar...";
+
+    // Vänta 200 ms för att "Laddar..." ska synas
+    await new Promise(resolve => setTimeout(resolve, 200));
 
     // Slumpa en bok
     const book = books[Math.floor(Math.random() * books.length)];
