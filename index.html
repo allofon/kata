@@ -1963,218 +1963,39 @@ document.addEventListener("click", () => {
 
 
 
-<script>
-// Lång lista med 50 svenska böcker (metadata korrekt)
-const books = [
-  {
-    "title": "Muminpappan på äventyr",
-    "authors": ["Tove Jansson"],
-    "contributors": ["Illustratör: Tove Jansson"],
-    "year": "1950",
-    "edition": "Första upplagan",
-    "isbn": "91-20-00433-9",
-    "librisId": "8496261",
-    "language": "Svenska",
-    "pages": 192,
-    "productionTime": "1950",
-    "copyrightYear": "1950",
-    "issn": null,
-    "series": "Mumintrollet"
-  },
-  {
-    "title": "Pippi Långstrump",
-    "authors": ["Astrid Lindgren"],
-    "contributors": ["Illustratör: Ingrid Vang Nyman"],
-    "year": "1945",
-    "edition": "Första upplagan",
-    "isbn": "91-0-048620-7",
-    "librisId": "8266304",
-    "language": "Svenska",
-    "pages": 160,
-    "productionTime": "1945",
-    "copyrightYear": "1945",
-    "issn": null,
-    "series": "Pippi Långstrump"
-  },
-  {
-    "title": "Nils Holgerssons underbara resa",
-    "authors": ["Selma Lagerlöf"],
-    "contributors": ["Illustratör: Albert Engström"],
-    "year": "1906",
-    "edition": "Första upplagan",
-    "isbn": "91-1-521234-5",
-    "librisId": "7308715",
-    "language": "Svenska",
-    "pages": 320,
-    "productionTime": "1906",
-    "copyrightYear": "1906",
-    "issn": null,
-    "series": null
-  },
-  {
-    "title": "Alice i Underlandet",
-    "authors": ["Lewis Carroll"],
-    "contributors": ["Översättning: Elsa Beskow"],
-    "year": "1865",
-    "edition": "Första svenska upplagan",
-    "isbn": "91-1-888999-0",
-    "librisId": "12000007",
-    "language": "Svenska",
-    "pages": 250,
-    "productionTime": "1912",
-    "copyrightYear": "1912",
-    "issn": null,
-    "series": null
-  },
-  {
-    "title": "Bröderna Lejonhjärta",
-    "authors": ["Astrid Lindgren"],
-    "contributors": ["Illustratör: Ilon Wikland"],
-    "year": "1973",
-    "edition": "Första upplagan",
-    "isbn": "91-0-048625-9",
-    "librisId": "8266309",
-    "language": "Svenska",
-    "pages": 222,
-    "productionTime": "1973",
-    "copyrightYear": "1973",
-    "issn": null,
-    "series": "Krontrollen / Fantasysaga"
-  },
-	
-  {
-    "title": "Röda rummet",
-    "authors": ["August Strindberg"],
-    "contributors": [],
-    "year": "1879",
-    "edition": "Första upplagan",
-    "isbn": "91-1-526554-9",
-    "librisId": "10109329",
-    "language": "Svenska",
-    "pages": 400,
-    "productionTime": "1879",
-    "copyrightYear": "1879",
-    "issn": null,
-    "series": null
-  },
-  {
-    "title": "Utvandrarna",
-    "authors": ["Vilhelm Moberg"],
-    "contributors": [],
-    "year": "1949",
-    "edition": "Första upplagan",
-    "isbn": "91-0-037521-6",
-    "librisId": "10806612",
-    "language": "Svenska",
-    "pages": 400,
-    "productionTime": "1949",
-    "copyrightYear": "1949",
-    "issn": null,
-    "series": "Utvandrarserien"
-  },
-  {
-    "title": "Dvärgen",
-    "authors": ["Pär Lagerkvist"],
-    "contributors": [],
-    "year": "1944",
-    "edition": "Första upplagan",
-    "isbn": "91-0-048600-0",
-    "librisId": "8342210",
-    "language": "Svenska",
-    "pages": 150,
-    "productionTime": "1944",
-    "copyrightYear": "1944",
-    "issn": null,
-    "series": null
-  },
-  {
-    "title": "Doktor Glas",
-    "authors": ["Hjalmar Söderberg"],
-    "contributors": [],
-    "year": "1905",
-    "edition": "Första upplagan",
-    "isbn": "91-0-012345-6",
-    "librisId": "8211777",
-    "language": "Svenska",
-    "pages": 250,
-    "productionTime": "1905",
-    "copyrightYear": "1905",
-    "issn": null,
-    "series": null
-  },
-  {
-    "title": "Isprinsessan",
-    "authors": ["Camilla Läckberg"],
-    "contributors": [],
-    "year": "2003",
-    "edition": "Första upplagan",
-    "isbn": "91-0-987654-3",
-    "librisId": "12000001",
-    "language": "Svenska",
-    "pages": 360,
-    "productionTime": "2003",
-    "copyrightYear": "2003",
-    "issn": null,
-    "series": "Fjällbacka-serien"
-  },
-  {
-    "title": "Män som hatar kvinnor",
-    "authors": ["Stieg Larsson"],
-    "contributors": [],
-    "year": "2005",
-    "edition": "Första upplagan",
-    "isbn": "91-0-123456-7",
-    "librisId": "11223344",
-    "language": "Svenska",
-    "pages": 500,
-    "productionTime": "2005",
-    "copyrightYear": "2005",
-    "issn": null,
-    "series": "Millennium-trilogin"
-  },
-  {
-    "title": "Syskonkärlek",
-    "authors": ["Katarina von Bredow"],
-    "contributors": [],
-    "year": "2010",
-    "edition": "Första upplagan",
-    "isbn": "91-0-111222-3",
-    "librisId": "9955667",
-    "language": "Svenska",
-    "pages": 200,
-    "productionTime": "2010",
-    "copyrightYear": "2010",
-    "issn": null,
-    "series": null
-  },
-
 
 
 		
 
+<script>
 async function getRandomBook() {
-    const container = document.getElementById("book");
-    container.style.display = "block";
-    container.innerHTML = "Laddar...";
+  const container = document.getElementById("book");
+  container.style.display = "block";
+  container.innerHTML = "Laddar...";
 
-    // Vänta 200 ms för att "Laddar..." ska synas
-    await new Promise(resolve => setTimeout(resolve, 200));
+  try {
+    // Slumpa ett id mellan 1 och 1000 som exempel
+    const randomId = Math.floor(Math.random() * 1000) + 1;
+    const response = await fetch(`https://libris.kb.se/xsearch?format=json&q=id:${randomId}`);
+    
+    if (!response.ok) throw new Error("Något gick fel med API:et");
+    
+    const data = await response.json();
 
-    // Slumpa en bok
-    const book = books[Math.floor(Math.random() * books.length)];
+    if (data.records && data.records.length > 0) {
+      const title = data.records[0].title || "Ingen titel";
+      container.innerHTML = `<strong>${title}</strong>`;
+    } else {
+      container.innerHTML = "Ingen bok hittades, prova igen!";
+    }
 
-    container.innerHTML = `
-        <h2>${book.title}</h2>
-        <p><strong>Författare:</strong> ${book.authors.join(", ")}</p>
-        <p><strong>Medförfattare / Illustratörer:</strong> ${book.contributors.join(", ") || "Saknas"}</p>
-        <p><strong>Utgivningsår:</strong> ${book.year}</p>
-        <p><strong>Upplaga:</strong> ${book.edition}</p>
-        <p><strong>ISBN:</strong> ${book.isbn}</p>
-        <p><strong>Libris-ID:</strong> ${book.librisId}</p>
-    `;
-    container.style.display = "block";
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = "Kunde inte hämta bok.";
+  }
 }
 </script>
+
 
 </main>
 </body>
