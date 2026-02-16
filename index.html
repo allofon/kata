@@ -1331,6 +1331,22 @@ button[onclick="getRandomBook()"]:hover {
 button[onclick="getRandomBook()"]:active {
     transform: translateY(1px); /* tryck-effekt */
 }
+
+/* Gör hela li klickbart */
+.ff-menu > li > a,
+.ff-submenu li > a {
+  display: block;          /* fyller hela li */
+  width: 100%;             /* säkerställer full bredd */
+  padding: 0.5rem 1rem;    /* behåll padding */
+  box-sizing: border-box;
+}
+
+/* Hover-effekt för hela raden */
+.ff-menu > li > a:hover,
+.ff-submenu li > a:hover {
+  background-color: #020617; /* hover bakgrund */
+  color: #fff;               /* hover text */
+}
 	  
   </style>
 </head>
