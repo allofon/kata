@@ -2024,7 +2024,6 @@ document.addEventListener("click", () => {
 
 </script>
 
-
 <script>
 
 const searchWords = [
@@ -2032,81 +2031,84 @@ const searchWords = [
     "biografi","vetenskap","krig","kärlek","sverige"
 ];
 
-async function getRandomBook(retry = 0) {
+async function getRandomBook() {
 
     const container = document.getElementById("book");
     container.style.display = "none";
     container.innerHTML = "Laddar...";
 
     const word = searchWords[Math.floor(Math.random() * searchWords.length)];
-    const randomOffset = Math.floor(Math.random() * 1000);
+    const randomOffset = Math.floor(Math.random() * 500);
 
-    const url =
+    const searchUrl =
         `https://libris.kb.se/find.jsonld` +
         `?q=${encodeURIComponent(word)}` +
         `&instanceOf.@type=Book` +
-        `&exists-title=true` +
-        `&exists-creator=true` +
-        `&_limit=50` +
+        `&_limit=20` +
         `&_offset=${randomOffset}`;
 
     try {
 
-        const response = await fetch(url, {
+        const searchResponse = await fetch(searchUrl, {
             headers: { "Accept": "application/ld+json" }
         });
 
-        const data = await response.json();
+        const searchData = await searchResponse.json();
 
-        // Hitta itemListElement
-        const collection = data["@graph"]?.find(obj => obj.itemListElement);
+        const collection = searchData["@graph"]?.find(obj => obj.itemListElement);
 
-        if (!collection || !collection.itemListElement.length) {
-            if (retry < 3) {
-                return getRandomBook(retry + 1);
-            }
-            alert("Hittade inga böcker just nu.");
+        if (!collection || collection.itemListElement.length === 0) {
+            alert("Inga träffar just nu.");
             return;
         }
 
-        const items = collection.itemListElement;
-        const randomItem = items[Math.floor(Math.random() * items.length)];
+        // Slumpa en träff
+        const randomItem = collection.itemListElement[
+            Math.floor(Math.random() * collection.itemListElement.length)
+        ];
 
-        const book = randomItem.item;
+        const bookId = randomItem.item["@id"];
 
-        const title = book.title || "Okänd titel";
+        // Hämta full post
+        const bookResponse = await fetch(bookId + ".jsonld", {
+            headers: { "Accept": "application/ld+json" }
+        });
 
-        let author = "Okänd";
-        if (book.creator) {
-            if (Array.isArray(book.creator)) {
-                author = book.creator.map(c => c.label || "").join(", ");
-            } else {
-                author = book.creator.label || "Okänd";
-            }
+        const bookData = await bookResponse.json();
+
+        const graph = bookData["@graph"];
+
+        // Försök hitta själva instansen
+        const instance = graph.find(obj => obj["@type"] === "Instance");
+
+        if (!instance) {
+            alert("Kunde inte läsa bokdata.");
+            return;
         }
 
-        const year = book.publication?.[0]?.year || "Okänt";
-        const edition = book.edition || "Okänd";
-        const isbn = book.isbn ? book.isbn.join(", ") : "Saknas";
-        const issn = book.issn ? book.issn.join(", ") : "Saknas";
+        const title = instance.hasTitle?.[0]?.mainTitle || "Okänd titel";
+        const year = instance.publication?.[0]?.year || "Okänt";
+        const edition = instance.editionStatement || "Okänd";
+        const isbn = instance.identifiedBy?.filter(id => id["@type"] === "ISBN")
+            .map(id => id.value).join(", ") || "Saknas";
 
         container.style.display = "block";
         container.innerHTML = `
             <h2>${title}</h2>
-            <p><strong>Författare:</strong> ${author}</p>
             <p><strong>Utgivningsår:</strong> ${year}</p>
             <p><strong>Upplaga:</strong> ${edition}</p>
             <p><strong>ISBN:</strong> ${isbn}</p>
-            <p><strong>ISSN:</strong> ${issn}</p>
+            <p><strong>Libris-ID:</strong> ${bookId}</p>
         `;
 
     } catch (error) {
         console.error(error);
-        alert("Fel vid hämtning från Libris.");
+        alert("Fel vid kontakt med Libris.");
     }
 }
 
 </script>
+
 
 
 
