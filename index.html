@@ -2029,8 +2029,7 @@ document.addEventListener("click", () => {
 
 const searchWords = [
     "roman","historia","barn","deckare","fantasy",
-    "biografi","vetenskap","krig","kärlek","sverige",
-    "konst","teknik","poesi","novell","drama"
+    "biografi","vetenskap","krig","kärlek","sverige"
 ];
 
 async function getRandomBook(retry = 0) {
@@ -2039,10 +2038,7 @@ async function getRandomBook(retry = 0) {
     container.style.display = "none";
     container.innerHTML = "Laddar...";
 
-    // Slumpa sökord
     const word = searchWords[Math.floor(Math.random() * searchWords.length)];
-
-    // Slumpa offset så vi inte alltid får första sidan
     const randomOffset = Math.floor(Math.random() * 1000);
 
     const url =
@@ -2060,32 +2056,32 @@ async function getRandomBook(retry = 0) {
             headers: { "Accept": "application/ld+json" }
         });
 
-        if (!response.ok) {
-            throw new Error("HTTP-fel: " + response.status);
-        }
-
         const data = await response.json();
 
-        if (!data["@graph"] || data["@graph"].length === 0) {
+        // Hitta itemListElement
+        const collection = data["@graph"]?.find(obj => obj.itemListElement);
+
+        if (!collection || !collection.itemListElement.length) {
             if (retry < 3) {
                 return getRandomBook(retry + 1);
-            } else {
-                alert("Hittade inga böcker just nu.");
-                return;
             }
+            alert("Hittade inga böcker just nu.");
+            return;
         }
 
-        const book = data["@graph"][Math.floor(Math.random() * data["@graph"].length)];
+        const items = collection.itemListElement;
+        const randomItem = items[Math.floor(Math.random() * items.length)];
 
-        // Försök plocka ut metadata robust
+        const book = randomItem.item;
+
         const title = book.title || "Okänd titel";
 
         let author = "Okänd";
         if (book.creator) {
             if (Array.isArray(book.creator)) {
-                author = book.creator.map(c => c.label || c["@id"] || "").join(", ");
+                author = book.creator.map(c => c.label || "").join(", ");
             } else {
-                author = book.creator.label || book.creator["@id"] || "Okänd";
+                author = book.creator.label || "Okänd";
             }
         }
 
@@ -2100,17 +2096,8 @@ async function getRandomBook(retry = 0) {
             <p><strong>Författare:</strong> ${author}</p>
             <p><strong>Utgivningsår:</strong> ${year}</p>
             <p><strong>Upplaga:</strong> ${edition}</p>
-            <p><strong>ISBN:</strong> ${isbn}</p>
-            <p><strong>ISSN:</strong> ${issn}</p>
-        `;
+            <p><strong>ISBN:</
 
-    } catch (error) {
-        console.error(error);
-        alert("Kunde inte kontakta Libris API.");
-    }
-}
-
-</script>
 
 
 
